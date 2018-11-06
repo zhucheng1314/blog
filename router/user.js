@@ -20,6 +20,11 @@ router.post('/login',userctrl.loginpost)
 
 
 
+// //路由注销
+// router.get('/logout',userctrl.logoutget)
+
+
+
 
 //暴露路由
 module.exports=router
