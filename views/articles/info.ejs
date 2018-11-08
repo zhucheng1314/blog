@@ -1,7 +1,18 @@
-<%- include('../common/header.ejs')%>
+<%- include('../common/header.ejs') %>
 
+<div class="container">
+  <h1 class="text-center">
+    <%= article.title %>
+    <% if (user && user.id === article.author_id) { %>
+      <a class="btn btn-info pull-right" href="/article/edit/<%= article.id %>">编辑</a>
+    <% } %>
+  </h1>
+  <hr>
 
-<h1>this is 文章详细page  no die loading...</h1>
+  <div>
+    <%- article.content %>
+  </div>
 
+</div>
 
-<%- include('../common/footer.ejs')%>
+<%- include('../common/footer.ejs') %>

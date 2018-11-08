@@ -9,6 +9,10 @@ router.post('/article/add',articlectrl.articleaddpost)
 //路由添加成功后跳转的页面
 router.get('/article/info/:id',articlectrl.articleinfoget)
 
+//路由 编辑页面
+router.get('/article/edit/:id',articlectrl.articleeditget)
+router.post('/article/edit',articlectrl.articleeditpost)
+
 
 //暴露路由
 module.exports=router

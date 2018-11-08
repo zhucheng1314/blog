@@ -20,8 +20,8 @@ router.post('/login',userctrl.loginpost)
 
 
 
-// //路由注销
-// router.get('/logout',userctrl.logoutget)
+//路由注销
+router.get('/logout',userctrl.logoutget)
 
 
 
