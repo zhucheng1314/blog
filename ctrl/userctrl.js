@@ -3,16 +3,16 @@ const moment=require('moment')
 
 module.exports = {
     //进入注册首页  
-    registerget: (req, res) => {
+    registerget(req, res){
         res.render('./user/register.ejs', {}) //调用ejs模板渲染页面
     },
     //进入登录页面  
-    loginget: (req, res) => {
+    loginget(req, res){
         res.render('./user/login.ejs', {}) //调用ejs模板渲染页面
     },
 
     //注册页面  逻辑
-    registerpost: (req, res) => {
+    registerpost(req, res){
         //获取客户端提交过来的 用户表单信息
         const user = req.body
 
@@ -49,7 +49,7 @@ module.exports = {
     },
 
     //登录页面  逻辑
-    loginpost:(req,res)=>{
+    loginpost(req,res){
         //获取客户端提交过来的数据
         const user=req.body
         //执行sql语句  查询用户是否存在   密码是否正确
@@ -63,7 +63,20 @@ module.exports = {
             if(result.length===0){
                 return res.status(400).send({status:400,msg:'用户名或密码错误!try again!'})
             }
+            //在session中存储用户登录信息  和登录状态
+            req.session.user=result[0]
+            req.session.isLogin=true
+            let hour=1000*60*60*24*30
+            req.session.cookie.expires=new Date(Date.now()+hour)
             res.send({status:200,msg:'恭喜  登录成功'})
+        })
+
+    },
+
+    //注销页面
+    logoutget(req,res){
+        req.session.destroy(err=>{
+            res.redirect('/')
         })
     }
 
